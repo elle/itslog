@@ -9,7 +9,7 @@ module Itslog
     end
 
     def add_with_format(severity, message = nil, progname = nil, &block)
-      return if @level > severity || message.nil?
+      return if (@level && @level > severity) || message.nil?
 
       time    = Time.now.strftime(Itslog::Configure.timestamp_format)
       message = Itslog::Configure.message_color + message.to_s.strip
